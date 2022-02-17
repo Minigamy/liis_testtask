@@ -1,0 +1,55 @@
+{% load static %}
+<html>
+<head>
+    <title>Nikita</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <!--    <link rel="stylesheet" href="{% static 'css/blog.css' %}">-->
+</head>
+<body>
+
+<style>
+    .top-menu {
+        margin-left: 40px;
+    }
+
+    .acc {
+        margin-left: 40px;
+    }
+</style>
+
+<div class="page-header">
+
+    {% if perms.postapp.add_post %}
+    <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a><span> Add post</span>
+    {% endif %}
+
+    <h1 align="center"><a href="{% url 'home' %}">Posts</a></h1>
+<div class="acc">
+    <span align="left">
+                {% if user.is_authenticated %}
+                    <p>Username: {{ user.email }}</p>
+                    <a href="{% url 'logout' %}">Log Out</a>
+                {% else %}
+                    <p>You are not logged in</p>
+                    <div>
+                        <a href="{% url 'login' %}">Log In</a><span> | </span>
+                        <a href="{% url 'signup' %}">Sign Up</a>
+                    </div>
+                {% endif %}
+    </span>
+</div>
+
+</div>
+
+<div class="content container">
+    <div class="row">
+        <div class="col-md-8">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+</div>
+</body>
+</html>

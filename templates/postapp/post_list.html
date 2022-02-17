@@ -1,0 +1,19 @@
+{% extends 'postapp/base.html' %}
+{% block content %}
+  {% for post in posts %}
+                <style>
+                    .post {
+                        margin-bottom: 20px;
+                    }
+                </style>
+                <div class="post">
+                    <div class="date">
+                        <p>Опубликовано: {{ post.published_date }}</p>
+                        <p>Автор: {{ post.author }}</p>
+                    </div>
+                    <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+                    <p>{{ post.text|linebreaksbr }}</p>
+                    <br>
+                </div>
+            {% endfor %}
+{% endblock %}
