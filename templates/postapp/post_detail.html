@@ -1,18 +1,20 @@
 {% extends 'postapp/base.html' %}
 
 {% block content %}
-    <div class="post">
-            <div class="date">
-                {{ post.published_date }}
-            </div>
-        <h1>{{ post.title }}</h1>
-        <p>{{ post.text|linebreaksbr }}</p>
-        <br>
-        {% if perms.postapp.change_post %}
-        {% if user.id == post.author_id %}
-        <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a><span> Edit post</span>
-        <a class="btn btn-default" href="{% url 'post_delete' pk=post.pk %}"><span class="glyphicon glyphicon-trash"></span></a><span> Delete post</span>
-        {% endif %}
-        {% endif %}
+<div class="post">
+    <div class="date">
+        {{ post.published_date }}
     </div>
+    <h1>{{ post.title }}</h1>
+    <p>{{ post.text|linebreaksbr }}</p>
+    <br>
+
+    {% if perms.postapp.change_post %}
+        {% if user.id == post.author_id %}
+            <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a><span> Edit post</span>
+            <a class="btn btn-default" href="{% url 'post_delete' pk=post.pk %}"><span class="glyphicon glyphicon-trash"></span></a><span> Delete post</span>
+        {% endif %}
+    {% endif %}
+
+</div>
 {% endblock %}

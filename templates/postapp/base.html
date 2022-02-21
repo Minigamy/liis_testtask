@@ -22,7 +22,7 @@
 <div class="page-header">
 
     {% if perms.postapp.add_post %}
-    <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a><span> Add post</span>
+        <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a><span> Add post</span>
     {% endif %}
 
     <h1 align="center"><a href="{% url 'home' %}">Posts</a></h1>
