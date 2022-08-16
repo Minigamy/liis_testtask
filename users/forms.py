@@ -6,7 +6,7 @@ from .models import CustomUser
 
 
 class CustomUserCreationForm(UserCreationForm):
-    groups = forms.ModelChoiceField(queryset=Group.objects.all())
+    groups = forms.ModelChoiceField(queryset=Group.objects.all(), required=False)
 
     class Meta:
         model = CustomUser

@@ -17,13 +17,19 @@ class SignUp(generic.CreateView):
             user = form.save(commit=False)
             user.save()
 
-            user_group = Group.objects.get(name=form.cleaned_data['groups'])
-            user.groups.add(user_group)
+            group = form.cleaned_data['groups']
+
+            if group is not None:
+                user_group = Group.objects.get(name=form.cleaned_data['groups'])
+                user.groups.add(user_group)
+
+                return redirect('login')
+
 
             # for form_ug in form.cleaned_data['groups']:
             #     user_group = Group.objects.get(name=form_ug.name)
             #     user.groups.add(user_group)
-
-            return redirect('login')
+            else:
+                return redirect('login')
         else:
             return render(request, self.template_name, {'form': form})

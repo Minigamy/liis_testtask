@@ -7,4 +7,5 @@ urlpatterns = [
     path('', include('postapp.urls')),
     path('users/', include('users.urls')),
     path('users/', include('django.contrib.auth.urls')),
+    path('api/', include('postapp.api.urls', namespace='api')),
 ]
